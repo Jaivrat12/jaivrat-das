@@ -12,7 +12,10 @@ import { IconExternalLink } from '@tabler/icons-react';
 const Navbar = () => {
 
 	return (
-		<NextUiNavbar maxWidth="xl">
+		<NextUiNavbar
+			maxWidth="xl"
+			className="bg-transparent"
+		>
 			<NavbarBrand>
 				<Link href="/" className="font-bold text-inherit">
                     JAIVRATDAS.IN

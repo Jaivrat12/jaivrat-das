@@ -9,7 +9,7 @@ export function Providers({
     children: React.ReactNode;
 }) {
 	return (
-        <NextUIProvider className="h-full">
+        <NextUIProvider className="min-h-full">
             {children}
         </NextUIProvider>
     );
