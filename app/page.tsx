@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import { Button } from '@nextui-org/button';
-import { Image } from '@nextui-org/image';
+import { Image as NextUiImage } from '@nextui-org/image';
 import {
 	IconBrandGithub,
 	IconBrandLeetcode,
@@ -18,7 +19,7 @@ export default function Home() {
 
 	return (
 		<div className="md:px-6 max-w-screen-xl md:mx-auto">
-			<div className="min-h-[calc(100vh-64px)] md:pt-16 flex flex-col justify-between">
+			<div className="md:pt-16 md:min-h-0 min-h-[calc(100vh-64px-5rem)] flex flex-col justify-between">
 				<div className="flex md:flex-row flex-col md:items-center md:gap-10 gap-5">
 					<div className="relative flex justify-center">
 						<div
@@ -32,60 +33,51 @@ export default function Home() {
 						/>
 
 						<div className="lg:p-4 md:p-2 p-4">
-							<Image
+							<NextUiImage
+								as={Image}
 								src="/assets/images/jaivrat-das.jpeg"
 								alt="Portrait of Jaivrat Das"
-								width="300px"
-								className="min-w-[300px]"
+								width={300}
+								height={300}
+								className="md:min-w-[300px] w-full"
 								radius="full"
+								priority
 							/>
 						</div>
 					</div>
 
-					<div className="lg:px-6 md:px-2 px-6">
-						<h1
-							className="
-								flex
-								flex-col
-								sm:gap-4
-								gap-2
-								font-semibold
-							"
-						>
-							<span className="lg:text-5xl md:text-4xl sm:text-4xl text-3xl">
-								I&apos;m{' '}
-								<span
-									className="
-										bg-gradient-to-r from-[#92fe9d] to-[#00c9ff]
-										bg-clip-text
-									"
-									style={{
-										letterSpacing: '0.25rem',
-										WebkitTextFillColor: 'transparent',
-									}}
-								>
-									JAIVRAT DAS
-								</span>
+					<div className="lg:px-6 md:px-2 px-6 font-semibold">
+						<h1 className="lg:text-5xl sm:text-4xl min-[343px]:text-3xl text-2xl font-extrabold">
+							I&apos;m{' '}
+							<span
+								className="
+									bg-gradient-to-r from-[#92fe9d] to-[#00c9ff]
+									bg-clip-text
+									tracking-widest
+								"
+								style={{
+									WebkitTextFillColor: 'transparent',
+								}}
+							>
+								JAIVRAT DAS
 							</span>
 						</h1>
 
 						<p className="mt-5 lg:text-xl">
 							💻 A{' '}
-							<span
+							<strong
 								className="
-									bg-gradient-to-r
-									from-[#f9d423] to-[#f83600]
+									bg-gradient-to-r from-[#f9d423] to-[#f83600]
 									bg-clip-text
 									tracking-widest
 									uppercase
-									font-semibold
 								"
 								style={{
 									WebkitTextFillColor: 'transparent',
 								}}
 							>
 								Full-Stack
-							</span>{' '}
+							</strong>{' '}
 							Software Developer who thrives in collaborative
 							environments, tackling challenges with a passion for
 							building and continuously learning.
@@ -133,7 +125,7 @@ export default function Home() {
 
 							<Button
 								as={Link}
-								href="mailto:jaivrat.das@gmail.com"
+								href="https://www.linkedin.com/in/jaivratdas/"
 								target="_blank"
 								color="success"
 								variant="flat"
@@ -146,21 +138,17 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="text-center flex-1 grid place-content-center">
+				<div className="md:my-16 mt-10 grid place-content-center flex-1">
 					<Button
 						size="lg"
 						onPress={() => scrollTo(0, (myProjectsRef.current?.offsetTop ?? 70) - 70)}
 						className="
 							w-[64px]
 							h-[80px]
-							mx-auto
 							p-[4px]
 							flex
 							items-center
 							rounded-full
-							font-semibold
-							text-foreground
-							shadow-sm
 						"
 						isIconOnly
 					>
@@ -168,7 +156,7 @@ export default function Home() {
 							className="
 								absolute
 								inset-[-1000%]
-								animate-[spin_3s_linear_infinite]
+								animate-[spin_2s_linear_infinite]
 								bg-[conic-gradient(from_90deg_at_50%_50%,#F54180_0%,#338EF7_50%,#F54180_100%)]
 							"
 						/>
@@ -178,14 +166,11 @@ export default function Home() {
 								h-full
 								w-full
 								inline-flex
-								cursor-pointer
-								items-center
 								justify-center
 								rounded-full
 								bg-background
 								group-hover:bg-background/70
 								transition-background
-								text-foreground
 								backdrop-blur-3xl
 							"
 						>
@@ -193,7 +178,12 @@ export default function Home() {
 								xmlns="http://www.w3.org/2000/svg"
 								aria-hidden="true"
 								role="img"
-								className="outline-none transition-transform rotate-90 group-hover:translate-y-3 [&amp;>path]:stroke-[2px]"
+								className="
+									outline-none
+									transition-transform
+									rotate-90
+									animate-[jumpInfinite_2s_ease-in-out_infinite]
+								"
 								width="60"
 								height="60"
 								viewBox="-12 -12 48 48"
@@ -205,22 +195,14 @@ export default function Home() {
 									strokeLinejoin="round"
 									strokeWidth="4"
 									d="M4 12h16m0 0l-6-6m6 6l-6 6"
-								></path>
+								/>
 							</svg>
 						</div>
 					</Button>
 				</div>
 			</div>
 
-			<div
-				className="
-					min-h-full
-					mx-auto
-					md:px-0
-					px-6
-					pb-10
-				"
-			>
+			<div className="md:px-0 px-6 pb-10">
 				<div className="mt-20">
 					<MyProjects ref={myProjectsRef} />
 				</div>

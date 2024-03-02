@@ -18,7 +18,7 @@ const Navbar = () => {
 		>
 			<NavbarBrand>
 				<Link href="/" className="font-bold text-inherit">
-                    JAIVRATDAS.IN
+                    JAIVRAT DAS
                 </Link>
 			</NavbarBrand>
 
@@ -31,7 +31,7 @@ const Navbar = () => {
                         color="secondary"
                         variant="shadow"
                         radius="full"
-                        className="bg-gradient-to-r from-violet-600 to-pink-600"
+						className="bg-gradient-to-r from-pink-600 to-violet-600"
                         endContent={<IconExternalLink />}
 					>
 						View Resume

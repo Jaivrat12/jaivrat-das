@@ -1,18 +1,33 @@
 import { forwardRef } from 'react';
+import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
+import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover';
+import { Tooltip } from '@nextui-org/tooltip';
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { Project } from '@/types';
+import { getTechIconUrl } from '@/utils/techIcons';
 
-const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref) {
-
+const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
+	props,
+	ref,
+) {
 	const projects: Project[] = [
 		{
 			title: 'Clannad',
 			description:
 				'A Family Tree Maker where you can create various family trees that are related to each other.',
-			techStack: 'MERN + Next.js',
+			techStack: [
+				'Next.js',
+				'Redux',
+				'Express.js',
+				'MongoDB',
+				'React',
+				'Node.js',
+				'JavaScript',
+				'Material UI',
+			],
 			demoLink: 'https://clannad.jaivratdas.in/',
 			githubLink: 'https://github.com/Jaivrat12/clannad-family-tree',
 			image: 'https://raw.githubusercontent.com/Jaivrat12/Jaivrat12/master/images/clannad.gif',
@@ -21,7 +36,10 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref
 			title: 'Autobot',
 			description:
 				'Web Automation Toolkit: A Chrome Extension enabling users to build customizable bots to automate tedious tasks.',
-			techStack: 'Plasmo (React)',
+			techStack: [
+				'React',
+				'Mantine',
+			],
 			demoLink:
 				'https://github.com/Jaivrat12/autobot/releases/tag/first-release',
 			githubLink: 'https://github.com/Jaivrat12/autobot',
@@ -31,7 +49,12 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref
 			title: 'Weather App',
 			description:
 				'A visually appealing Weather App with user-engaging animations and backgrounds that resemble the current weather.',
-			techStack: 'React, Material UI',
+			techStack: [
+				'React',
+				'React Router',
+				'Material UI',
+				'Framer Motion',
+			],
 			demoLink: 'https://weather.jaivratdas.in/',
 			githubLink: 'https://github.com/Jaivrat12/weather-app',
 			image: 'https://raw.githubusercontent.com/Jaivrat12/Jaivrat12/master/images/weather-app.gif',
@@ -43,7 +66,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref
 			<h2
 				ref={ref}
 				className="
-					pb-10
+					mb-10
 					text-center
 					lg:text-4xl
 					sm:text-3xl
@@ -85,41 +108,107 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref
 								href={project.demoLink}
 								target="_blank"
 							>
-								<h4 className="text-lg">{project.title}</h4>
+								<h4 className="text-lg mb-1">
+									{project.title}
+								</h4>
 							</a>
-
-							<p className="text-default-500 mb-1.5">
-								<i>{project.techStack}</i>
-							</p>
 
 							<p className="text-default-500 mb-2.5 flex-1">
 								{project.description}
 							</p>
 
-							<div className="w-full flex justify-end gap-2">
-								<Button
-									as="a"
-									href={project.githubLink}
-									target="_blank"
-									variant="ghost"
-									isIconOnly
-								>
-									<IconBrandGithub />
-								</Button>
+							<div className="w-full flex justify-between gap-4 flex-wrap">
+								<AvatarGroup
+									size="sm"
+									isGrid
+									max={4}
+									className="grid-cols-5 gap-[2px]"
+									renderCount={(count) => (
+										<Popover
+											backdrop="blur"
+											showArrow
+										>
+											<PopoverTrigger>
+												<Button
+													size="sm"
+													radius="full"
+													isIconOnly
+												>
+													+{count}
+												</Button>
+											</PopoverTrigger>
 
-								<Button
-									className="bg-gradient-to-r from-violet-600 to-pink-600"
-									as="a"
-									href={project.demoLink}
-									target="_blank"
-									color="secondary"
-									variant="shadow"
-									endContent={
-										<IconExternalLink size="1.25rem" />
-									}
+											<PopoverContent className="items-start gap-1.5 p-4">
+												<h6 className="text-lg mb-2">
+													Tech Stack used in{' '}
+													{project.title}
+												</h6>
+
+												<div className="grid sm:grid-cols-3 grid-cols-2 gap-3">
+													{project.techStack.map((tech, i) => (
+														<div
+															key={i}
+															className="flex items-center gap-2 text-default-600"
+														>
+															<Avatar
+																src={getTechIconUrl(tech, 'transparent').url}
+																alt={tech}
+																className="[&>img]:!object-contain"
+																style={getTechIconUrl(tech, 'transparent').styles}
+															/>
+															{tech}
+														</div>
+													))}
+												</div>
+											</PopoverContent>
+										</Popover>
+									)}
 								>
-									Try it!
-								</Button>
+									{project.techStack.map((tech, i) => (
+										<Tooltip
+											key={i}
+											content={tech}
+											color="foreground"
+											closeDelay={0}
+										>
+											<Avatar
+												src={getTechIconUrl(tech, 'transparent').url}
+												alt={tech}
+												className="[&>img]:object-contain"
+												style={{
+													...getTechIconUrl(tech, 'transparent').styles,
+													border: '2px solid #3338',
+												}}
+											/>
+										</Tooltip>
+									))}
+								</AvatarGroup>
+
+								<div className="ml-auto flex justify-end gap-2">
+									<Button
+										as="a"
+										href={project.githubLink}
+										target="_blank"
+										variant="ghost"
+										isIconOnly
+									>
+										<IconBrandGithub />
+									</Button>
+
+									<Button
+										className="bg-gradient-to-r from-pink-600 to-violet-600"
+										as="a"
+										href={project.demoLink}
+										target="_blank"
+										color="secondary"
+										variant="shadow"
+										endContent={
+											<IconExternalLink size="1.25rem" />
+										}
+									>
+										Try it!
+									</Button>
+								</div>
 							</div>
 						</CardFooter>
 					</Card>
@@ -136,8 +225,6 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(props, ref
 						w-fit
 						mx-auto
 						p-[2px]
-						flex
-						items-center
 						rounded-full
 						font-semibold
 						text-foreground
