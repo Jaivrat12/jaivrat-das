@@ -2,20 +2,61 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
-import { Button } from '@nextui-org/button';
-import { Image as NextUiImage } from '@nextui-org/image';
+import React, { useRef } from 'react';
+import {
+	Button,
+	Image as NextUiImage,
+	Tooltip,
+	type ButtonProps,
+} from '@nextui-org/react';
 import {
 	IconBrandGithub,
 	IconBrandLeetcode,
 	IconBrandLinkedin,
-	IconMail,
+	IconFileDownload,
+	type TablerIconsProps,
 } from '@tabler/icons-react';
 import MyProjects from '@/components/MyProjects';
+
+type QuickLinks = {
+	title: string;
+	href: string;
+	color: ButtonProps['color'];
+	// eslint-disable-next-line no-unused-vars
+	Icon: (props: TablerIconsProps) => React.JSX.Element;
+};
 
 export default function Home() {
 
 	const myProjectsRef = useRef<HTMLHeadingElement>(null);
+	const scrollToMyProjects = () => scrollTo(0, (myProjectsRef.current?.offsetTop ?? 70) - 70);
+
+	const quickLinks: QuickLinks[] = [
+		{
+			title: 'GitHub',
+			href: 'https://github.com/jaivrat12',
+			color: 'default',
+			Icon: IconBrandGithub,
+		},
+		{
+			title: 'Linkedin',
+			href: 'https://www.linkedin.com/in/jaivratdas/',
+			color: 'primary',
+			Icon: IconBrandLinkedin,
+		},
+		{
+			title: 'LeetCode',
+			href: 'https://leetcode.com/jaivrat12/',
+			color: 'warning',
+			Icon: IconBrandLeetcode,
+		},
+		{
+			title: 'Resume',
+			href: 'https://drive.google.com/file/d/187PeuDl64T4rgU86VwNBfn6cU9PxgqA3/view',
+			color: 'success',
+			Icon: IconFileDownload,
+		},
+	];
 
 	return (
 		<div className="md:px-6 max-w-screen-xl md:mx-auto">
@@ -53,11 +94,9 @@ export default function Home() {
 								className="
 									bg-gradient-to-r from-[#92fe9d] to-[#00c9ff]
 									bg-clip-text
+									text-transparent
 									tracking-widest
 								"
-								style={{
-									WebkitTextFillColor: 'transparent',
-								}}
 							>
 								JAIVRAT DAS
 							</span>
@@ -88,52 +127,27 @@ export default function Home() {
 						</p>
 
 						<div className="sm:mt-8 mt-6 flex gap-4">
-							<Button
-								as={Link}
-								href="https://github.com/jaivrat12"
-								target="_blank"
-								variant="flat"
-								className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
-								isIconOnly
-							>
-								<IconBrandGithub size="2rem" />
-							</Button>
-
-							<Button
-								as={Link}
-								href="https://www.linkedin.com/in/jaivratdas/"
-								target="_blank"
-								color="primary"
-								variant="flat"
-								className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
-								isIconOnly
-							>
-								<IconBrandLinkedin size="2rem" />
-							</Button>
-
-							<Button
-								as={Link}
-								href="https://leetcode.com/jaivrat12/"
-								target="_blank"
-								color="warning"
-								variant="flat"
-								className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
-								isIconOnly
-							>
-								<IconBrandLeetcode size="2rem" />
-							</Button>
-
-							<Button
-								as={Link}
-								href="https://www.linkedin.com/in/jaivratdas/"
-								target="_blank"
-								color="success"
-								variant="flat"
-								className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
-								isIconOnly
-							>
-								<IconMail size="2rem" />
-							</Button>
+							{quickLinks.map(({ title, href, color, Icon }, i) => (
+								<Tooltip
+									key={i}
+									content={title}
+									color={color}
+									placement="bottom"
+									closeDelay={0}
+								>
+									<Button
+										as={Link}
+										href={href}
+										target="_blank"
+										color={color}
+										variant="flat"
+										className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
+										isIconOnly
+									>
+										<Icon size="2rem" />
+									</Button>
+								</Tooltip>
+							))}
 						</div>
 					</div>
 				</div>
@@ -141,7 +155,7 @@ export default function Home() {
 				<div className="md:my-16 mt-10 grid place-content-center flex-1">
 					<Button
 						size="lg"
-						onPress={() => scrollTo(0, (myProjectsRef.current?.offsetTop ?? 70) - 70)}
+						onPress={scrollToMyProjects}
 						className="
 							w-[64px]
 							h-[80px]
