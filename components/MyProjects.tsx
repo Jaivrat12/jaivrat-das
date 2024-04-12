@@ -215,6 +215,10 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 				))}
 			</div>
 
+			{/* // ! Removed spin animation bcz it was causing flickering of other elements */}
+			{/* // ! In actual mobile device only (in portrait) (not in browser dev tool emulation) */}
+			{/* // ! The above elements have icons (GitHub, ExternalLink) which are involved in this */}
+			{/* // ! So instead of spin animation just giving it a rotation of -35deg for now */}
 			<div className="mt-8 text-center">
 				<Button
 					as="a"
@@ -235,7 +239,8 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 						className="
 							absolute
 							inset-[-1000%]
-							animate-[spin_3s_linear_infinite]
+							/animate-[spin_3s_linear_infinite]
+							rotate-[-35deg]
 							bg-[conic-gradient(from_90deg_at_50%_50%,#F54180_0%,#338EF7_50%,#F54180_100%)]
 						"
 					/>
