@@ -1,13 +1,10 @@
 import { forwardRef } from 'react';
-import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
-import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover';
-import { Tooltip } from '@nextui-org/tooltip';
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { Project } from '@/types';
-import { getTechIconUrl } from '@/utils/techIcons';
+import TechIconGroup from './TechIconGroup';
 
 const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 	props,
@@ -118,71 +115,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 							</p>
 
 							<div className="w-full flex justify-between gap-4 flex-wrap">
-								<AvatarGroup
-									size="sm"
-									isGrid
-									max={4}
-									className="grid-cols-5 gap-[2px]"
-									renderCount={(count) => (
-										<Popover
-											backdrop="blur"
-											showArrow
-										>
-											<PopoverTrigger>
-												<Button
-													size="sm"
-													radius="full"
-													isIconOnly
-												>
-													+{count}
-												</Button>
-											</PopoverTrigger>
-
-											<PopoverContent className="items-start gap-1.5 p-4">
-												<h6 className="text-lg mb-2">
-													Tech Stack used in{' '}
-													{project.title}
-												</h6>
-
-												<div className="grid sm:grid-cols-3 grid-cols-2 gap-3">
-													{project.techStack.map((tech, i) => (
-														<div
-															key={i}
-															className="flex items-center gap-2 text-default-600"
-														>
-															<Avatar
-																src={getTechIconUrl(tech, 'transparent').url}
-																alt={tech}
-																className="[&>img]:!object-contain"
-																style={getTechIconUrl(tech, 'transparent').styles}
-															/>
-															{tech}
-														</div>
-													))}
-												</div>
-											</PopoverContent>
-										</Popover>
-									)}
-								>
-									{project.techStack.map((tech, i) => (
-										<Tooltip
-											key={i}
-											content={tech}
-											color="foreground"
-											closeDelay={0}
-										>
-											<Avatar
-												src={getTechIconUrl(tech, 'transparent').url}
-												alt={tech}
-												className="[&>img]:object-contain"
-												style={{
-													...getTechIconUrl(tech, 'transparent').styles,
-													border: '2px solid #3338',
-												}}
-											/>
-										</Tooltip>
-									))}
-								</AvatarGroup>
+								<TechIconGroup project={project} />
 
 								<div className="ml-auto flex justify-end gap-2">
 									<Button
@@ -226,7 +159,8 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 					target="_blank"
 					size="lg"
 					className="
-						w-fit
+						sm:w-fit w-full
+						max-w-[480px]
 						mx-auto
 						p-[2px]
 						rounded-full

@@ -8,6 +8,10 @@ body {
 	scroll-behavior: smooth;
 }
 
+.container {
+	@apply px-6 max-w-screen-xl mx-auto
+}
+
 @keyframes jumpInfinite {
 	0% {
 		margin-top: 0;
