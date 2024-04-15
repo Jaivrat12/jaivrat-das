@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
-import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
+import { RiExternalLinkLine, RiGithubLine } from 'react-icons/ri';
 import { Project } from '@/types';
 import TechIconGroup from './TechIconGroup';
 
@@ -125,7 +125,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 										variant="ghost"
 										isIconOnly
 									>
-										<IconBrandGithub />
+										<RiGithubLine size="1.5rem" />
 									</Button>
 
 									<Button
@@ -136,7 +136,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 										color="secondary"
 										variant="shadow"
 										endContent={
-											<IconExternalLink size="1.25rem" />
+											<RiExternalLinkLine size="1.25rem" />
 										}
 									>
 										Try it!
@@ -148,10 +148,6 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 				))}
 			</div>
 
-			{/* // ! Removed spin animation bcz it was causing flickering of other elements */}
-			{/* // ! In actual mobile device only (in portrait) (not in browser dev tool emulation) */}
-			{/* // ! The above elements have icons (GitHub, ExternalLink) which are involved in this */}
-			{/* // ! So instead of spin animation just giving it a rotation of -35deg for now */}
 			<div className="mt-8 text-center">
 				<Button
 					as="a"
@@ -173,8 +169,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 						className="
 							absolute
 							inset-[-1000%]
-							/animate-[spin_3s_linear_infinite]
-							rotate-[-35deg]
+							animate-[spin_5s_linear_infinite]
 							bg-[conic-gradient(from_90deg_at_50%_50%,#F54180_0%,#338EF7_50%,#F54180_100%)]
 						"
 					/>
@@ -201,7 +196,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 						"
 					>
 						View All Projects
-						<IconExternalLink size="1.25rem" />
+						<RiExternalLinkLine size="1.25rem" />
 					</div>
 				</Button>
 			</div>

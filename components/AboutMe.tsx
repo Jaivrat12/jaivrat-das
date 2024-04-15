@@ -1,35 +1,30 @@
 import { Card, CardBody, CardHeader } from '@nextui-org/react';
-import {
-    IconBrain,
-    IconDiamond,
-    IconUsersGroup,
-    IconZoomCheck,
-} from '@tabler/icons-react';
+import { TbBrain, TbDiamond, TbUsersGroup, TbZoomCheck } from 'react-icons/tb';
 
 const AboutMe = () => {
 
 	const qualities = [
 		{
 			title: 'Quick Learner',
-            Icon: IconBrain,
+            Icon: TbBrain,
 			description:
 				'Can quickly learn new tech due to strong programming skills & fluency in various techs like MERN & Next.js',
 		},
 		{
 			title: 'Collaborative',
-            Icon: IconUsersGroup,
+            Icon: TbUsersGroup,
 			description:
 				'Thrived in fast-paced startup environments, showcasing strong teamwork & communication abilities and helping teammates',
 		},
 		{
 			title: 'Determined',
-            Icon: IconDiamond,
+            Icon: TbDiamond,
 			description:
 				'Passionate & Persistent enough to give one more try even after facing many failures to complete the task',
 		},
 		{
 			title: 'Problem Solver',
-            Icon: IconZoomCheck,
+            Icon: TbZoomCheck,
 			description:
 				'Possesses the ability to identify optimal solutions by leveraging comprehensive & in-depth research skills',
 		},
@@ -49,7 +44,7 @@ const AboutMe = () => {
                     <CardHeader className="justify-between">
                         <div className="flex gap-2">
                             <div className="p-2 rounded-full text-[#fc00ff] bg-[#301051cc]">
-                                <Icon />
+                                <Icon size="1.5rem" />
                             </div>
                             <div className="flex flex-col gap-1 items-start justify-center">
                                 <h4 className="font-semibold leading-none text-default-600">

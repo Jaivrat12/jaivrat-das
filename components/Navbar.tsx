@@ -7,7 +7,7 @@ import {
 	NavbarContent,
 	NavbarItem,
 } from '@nextui-org/react';
-import { IconExternalLink } from '@tabler/icons-react';
+import { RiExternalLinkLine } from 'react-icons/ri';
 
 const Navbar = () => {
 
@@ -32,7 +32,9 @@ const Navbar = () => {
                         variant="shadow"
                         radius="full"
 						className="bg-gradient-to-r from-pink-600 to-violet-600"
-                        endContent={<IconExternalLink />}
+                        endContent={
+							<RiExternalLinkLine size="1.25rem" />
+						}
 					>
 						View Resume
 					</Button>

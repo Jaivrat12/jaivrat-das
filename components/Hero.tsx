@@ -1,26 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { type JSX } from 'react';
 import {
 	Button,
 	Image as NextUiImage,
 	Tooltip,
 	type ButtonProps,
 } from '@nextui-org/react';
-import {
-	IconBrandGithub,
-	IconBrandLeetcode,
-	IconBrandLinkedin,
-	IconFileDownload,
-	type TablerIconsProps,
-} from '@tabler/icons-react';
+import { LiaFileDownloadSolid } from 'react-icons/lia';
+import { PiLinkedinLogoBold } from 'react-icons/pi';
+import { RiGithubLine } from 'react-icons/ri';
+import { SiLeetcode } from 'react-icons/si';
+import { IconBaseProps, IconType } from 'react-icons';
 
 type QuickLinks = {
 	title: string;
 	href: string;
 	color: ButtonProps['color'];
-	// eslint-disable-next-line no-unused-vars
-	Icon: (props: TablerIconsProps) => JSX.Element;
+	Icon: IconType;
 };
 
 const Hero = () => {
@@ -30,25 +26,33 @@ const Hero = () => {
 			title: 'GitHub',
 			href: 'https://github.com/jaivrat12',
 			color: 'default',
-			Icon: IconBrandGithub,
+			Icon: (props: IconBaseProps) => (
+				<RiGithubLine {...props} size="2rem" />
+			),
 		},
 		{
 			title: 'Linkedin',
 			href: 'https://www.linkedin.com/in/jaivratdas/',
 			color: 'primary',
-			Icon: IconBrandLinkedin,
+			Icon: (props: IconBaseProps) => (
+				<PiLinkedinLogoBold {...props} size="1.75rem" />
+			),
 		},
 		{
 			title: 'LeetCode',
 			href: 'https://leetcode.com/jaivrat12/',
 			color: 'warning',
-			Icon: IconBrandLeetcode,
+			Icon: (props: IconBaseProps) => (
+				<SiLeetcode {...props} size="1.65rem" />
+			),
 		},
 		{
 			title: 'Resume',
 			href: 'https://drive.google.com/file/d/187PeuDl64T4rgU86VwNBfn6cU9PxgqA3/view',
 			color: 'success',
-			Icon: IconFileDownload,
+			Icon: (props: IconBaseProps) => (
+				<LiaFileDownloadSolid {...props} size="2rem" />
+			),
 		},
 	];
 
@@ -126,7 +130,7 @@ const Hero = () => {
 					{/* . Driven by creation & collaboration. Thrives on challenges & new technologies. */}
 				</p>
 
-				<div className="sm:mt-8 mt-6 flex gap-4">
+				<div className="sm:mt-8 mt-4 flex gap-4">
 					{quickLinks.map(({ title, href, color, Icon }, i) => (
 						<Tooltip
 							key={i}
@@ -141,10 +145,10 @@ const Hero = () => {
 								target="_blank"
 								color={color}
 								variant="flat"
-								className="sm:w-12 sm:h-12 sm:p-0 w-10 p-2"
+								className="w-12 h-12"
 								isIconOnly
 							>
-								<Icon size="2rem" />
+								<Icon />
 							</Button>
 						</Tooltip>
 					))}
