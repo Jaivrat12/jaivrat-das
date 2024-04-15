@@ -38,7 +38,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 				'Mantine',
 			],
 			demoLink:
-				'https://github.com/Jaivrat12/autobot/releases/tag/first-release',
+				'https://github.com/Jaivrat12/autobot/releases/tag/latest',
 			githubLink: 'https://github.com/Jaivrat12/autobot',
 			image: '/assets/images/autobot.png',
 		},
