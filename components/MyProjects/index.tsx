@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import { forwardRef } from 'react';
 import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
+import { Image as NextUiImage } from '@nextui-org/image';
 import { RiExternalLinkLine, RiGithubLine } from 'react-icons/ri';
 import { Project } from '@/types';
 import TechIconGroup from './TechIconGroup';
@@ -27,7 +28,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 			],
 			demoLink: 'https://clannad.jaivratdas.in/',
 			githubLink: 'https://github.com/Jaivrat12/clannad-family-tree',
-			image: 'https://raw.githubusercontent.com/Jaivrat12/Jaivrat12/master/images/clannad.gif',
+			image: '/assets/images/clannad.jpeg',
 		},
 		{
 			title: 'Autobot',
@@ -40,7 +41,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 			demoLink:
 				'https://github.com/Jaivrat12/autobot/releases/tag/latest',
 			githubLink: 'https://github.com/Jaivrat12/autobot',
-			image: '/assets/images/autobot.png',
+			image: '/assets/images/autobot.jpeg',
 		},
 		{
 			title: 'Weather App',
@@ -54,7 +55,7 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 			],
 			demoLink: 'https://weather.jaivratdas.in/',
 			githubLink: 'https://github.com/Jaivrat12/weather-app',
-			image: 'https://raw.githubusercontent.com/Jaivrat12/Jaivrat12/master/images/weather-app.gif',
+			image: '/assets/images/weather-app.png',
 		},
 	];
 
@@ -87,15 +88,18 @@ const MyProjects = forwardRef<HTMLHeadingElement>(function MyProjects(
 								href={project.demoLink}
 								target="_blank"
 							>
-								<Image
+								<NextUiImage
+									as={Image}
 									src={project.image}
 									alt={project.title}
 									className="w-full"
-									width="100%"
+									quality={100}
+									height="405"
+									width="720"
 									radius="lg"
 									shadow="sm"
 									isZoomed
-									// isBlurred
+									isBlurred
 								/>
 							</a>
 						</CardBody>
